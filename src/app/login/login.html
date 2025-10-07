@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-lg" style="width: 420px; border-radius: 16px;">
+    <h3 class="text-center mb-3" style="color: #0b1d39;">Welcome to My Cxperts</h3>
+    <div class="blue-separator"></div>
+
+    <!-- Username form -->
+    <form (ngSubmit)="onSubmit()" *ngIf="stage === 'username'" [formGroup]="usernameForm">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter your username"
+          formControlName="username"
+        />
+      </div>
+
+<button type="submit" class="btn btn-outline-coral w-100" [disabled]="usernameForm.invalid">
+  Continue
+</button>
+
+    </form>
+
+    <!-- Password form -->
+    <form (ngSubmit)="onPasswordSubmit()" *ngIf="stage === 'password'" [formGroup]="passwordForm">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          [value]="usernameForm.value.username"
+          disabled
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Enter your password"
+          formControlName="password"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-coral w-100" [disabled]="passwordForm.invalid">
+        Login
+      </button>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-link text-muted p-0" (click)="resetStage()">
+          ← Back
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <div class="coral-separator mt-4"></div>
+    <p class="text-center small text-muted mb-0">© 2025 MyCxperts | Secure Access Portal</p>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+/* Fill full height and available width, no overflow */
+.profile-page-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #f4f6f9;
+  overflow-y: auto;
+}
+
+/* Inner container with padding */
+.main-profile {
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box; /* Prevent padding from increasing width */
+}
+
+/* Profile photo style */
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid #0b1d39b4;
+}
+
+/* Coral separator, now solid and full width */
+.coral-separator {
+  border: none;
+  height: 4px;
+  background-color: #0b1d39a2;
+  margin: 1.5rem 0;
+}

@@ -1,12 +1,21 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SideBar } from './side-bar/side-bar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterModule, CommonModule, SideBar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('HRMS_Plus');
+  protected readonly title = signal('My Cxperts');
+
+  constructor(private router: Router) {}
+
+  /** Hide sidebar when on login route */
+  isLoginPage(): boolean {
+    return this.router.url.includes('/login');
+  }
 }

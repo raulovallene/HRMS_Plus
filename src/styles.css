@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* ✅ scroll only if needed */
+  background-color: #f4f6f9; /* Light background for consistency */
+}
+
+/* Optional: If you want scrolling inside the main content only */
+.main-content {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f4f6f9; /* Nearsol light background */
+}

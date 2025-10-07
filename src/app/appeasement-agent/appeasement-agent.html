@@ -1,0 +1,99 @@
+<div class="section">
+  <h3 class="agent-title">Codes</h3>
+  <div class="agent-underline"></div>
+  <div class="coral-separator"></div>
+
+  <div class="agent-search">
+    <input type="text" class="form-control" placeholder="Search codes..." />
+    <select class="form-select" (change)="onBrandChange($event)">
+      <option *ngFor="let brand of userBrands" [value]="brand.id.toString()" [selected]="brand.id.toString() === selectedBrandId">
+        {{ brand.name }}
+      </option>
+    </select>
+    <button class="btn btn-outline-navy">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
+
+  <div class="coral-separator"></div>
+
+  <div class="table-container mt-2">
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Brand</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created Date</th>
+          <th>Valid Until</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let code of codes" (click)="openModal(code)" [class.selected-row]="selectedCode?.idcodes === code.idcodes">
+          <td>{{ code.idcodes }}</td>
+          <td>{{ code.brandName  }}</td>
+          <td>{{ code.description }}</td>
+          <td>
+            <span class="badge" [ngClass]="code.statusClass">
+              {{ code.statusLabel }}
+            </span>
+          </td>
+          <td>{{ code.createdAt }}</td>
+          <td>{{ code.validUntil }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="assignCodeModal" tabindex="-1" aria-labelledby="assignCodeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex align-items-baseline gap-2">
+          <h5 class="modal-title" id="assignCodeModalLabel">Assign Code</h5>
+          <small *ngIf="selectedCode" class="text-light opacity-75">
+            ({{ selectedCode.code }})
+          </small>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="assignForm">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Case/Client</label>
+            <input type="text" class="form-control" formControlName="caseClient" placeholder="Enter case or client" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Description/Reason</label>
+            <input type="text" class="form-control" formControlName="description" placeholder="Enter description or reason" />
+          </div>
+
+          <div class="coral-separator"></div>
+
+          <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <label class="form-label fw-bold">User</label>
+              <input type="text" class="form-control" formControlName="user" [disabled]="true" />
+            </div>
+            <div class="col-md-4 d-flex align-items-center"></div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Date</label>
+              <input type="text" class="form-control" formControlName="date" [disabled]="true" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-outline-coral" (click)="saveAssignCode()" [disabled]="assignForm.invalid">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

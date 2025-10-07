@@ -1,0 +1,136 @@
+/* ===== Header ===== */
+.agent-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0b1d39; /* navy tone consistent with your theme */
+  position: relative;
+  margin-bottom: 0.2rem;
+}
+
+.agent-underline {
+  height: 4px;
+  background-color: #0b1d39;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+  width: calc(100% + 50px);
+  max-width: 250px;
+}
+
+/* ===== Separators (reuse from global but keep local for clarity) ===== */
+.coral-separator {
+  width: 100%;
+  height: 4px;
+  background-color: #f25c54;
+  margin: 1.5rem 0;
+  border-radius: 2px;
+  opacity: 25%;
+}
+
+.blue-separator {
+  width: 100%;
+  height: 3px;
+  background-color: #0b1d39;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 2px;
+}
+
+/* ===== Search bar layout ===== */
+.agent-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.agent-search input.form-control {
+  flex: 1;
+}
+
+.agent-search select.form-select {
+  max-width: 220px;
+}
+
+.agent-search button {
+  min-width: 45px;
+}
+
+/* ===== Section full height so table sticks to bottom ===== */
+.section {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px); /* adjust offset if you have top navbar */
+}
+
+/* ===== Table styling ===== */
+.table-container {
+  flex: 1; /* take remaining height */
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.table thead.table-dark th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody td {
+  text-align: center;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(242, 92, 84, 0.15); /* light coral hover */
+  cursor: pointer;
+}
+
+/* Row highlight for selected */
+.selected-row td {
+  background-color: #f25c54 !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+/* ===== Modal styling ===== */
+.modal-header {
+  background-color: #0b1d39;
+  color: white;
+  border-bottom: none;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+/* Buttons inside modal */
+.btn-outline-coral {
+  border: 2px solid #f25c54;
+  color: #f25c54;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-outline-coral:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-outline-coral:hover:not(:disabled) {
+  background-color: #f25c54;
+  color: white;
+}
+
+.btn-outline-navy {
+  border: 2px solid #0b1d39;
+  color: #0b1d39;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-outline-navy:hover {
+  background-color: #0b1d39;
+  color: white;
+}

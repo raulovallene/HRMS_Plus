@@ -1,0 +1,13 @@
+.btn-outline-coral {
+  color: #f25c54;
+  border: 1px solid #f25c54;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-outline-coral:hover,
+.btn-outline-coral:focus {
+  background-color: #f25c54;
+  border-color: #f25c54;
+  color: #fff;
+}

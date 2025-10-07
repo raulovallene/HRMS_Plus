@@ -1,0 +1,694 @@
+
+[LOGIN] 2025-10-07 02:57:25
+Array
+(
+    [AZURE_CLIENT_ID] => 
+    [AZURE_TENANT_ID] => 
+    [AZURE_CLIENT_SECRET] => 
+    [AZURE_REDIRECT_URI] => 
+    [AZURE_SCOPES] => 
+    [ENV_PATH] => C:\Users\raula\OneDrive\Documentos\2025\Projects\HRMS\HRMS_Plus\restApi\endpoints/../config/.env
+)
+
+[CALLBACK] 2025-10-07 02:57:26
+Array
+(
+    [AZURE_CLIENT_ID] => 
+    [AZURE_TENANT_ID] => 
+    [AZURE_CLIENT_SECRET] => 
+    [AZURE_REDIRECT_URI] => 
+    [AZURE_SCOPES] => 
+    [ENV_PATH] => C:\Users\raula\OneDrive\Documentos\2025\Projects\HRMS\HRMS_Plus\restApi\endpoints/../config/.env
+)
+
+[CALLBACK] 2025-10-07 02:58:00
+Array
+(
+    [AZURE_CLIENT_ID] => 
+    [AZURE_TENANT_ID] => 
+    [AZURE_CLIENT_SECRET] => 
+    [AZURE_REDIRECT_URI] => 
+    [AZURE_SCOPES] => 
+    [ENV_PATH] => C:\Users\raula\OneDrive\Documentos\2025\Projects\HRMS\HRMS_Plus\restApi\endpoints/../config/.env
+)
+
+[CALLBACK] 2025-10-07 02:58:02
+Array
+(
+    [AZURE_CLIENT_ID] => 
+    [AZURE_TENANT_ID] => 
+    [AZURE_CLIENT_SECRET] => 
+    [AZURE_REDIRECT_URI] => 
+    [AZURE_SCOPES] => 
+    [ENV_PATH] => C:\Users\raula\OneDrive\Documentos\2025\Projects\HRMS\HRMS_Plus\restApi\endpoints/../config/.env
+)
+[ENV LOADED 2025-10-07 03:02:15]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:02:23]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:02:37]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:02:42]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:02:45]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:09:50]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:09:53]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:17:02]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:17:05]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 03:59:59]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 04:00:04]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:47:08]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:47:09]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:47:17]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:47:18]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:51:57]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:52:02]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:52:09]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:52:14]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:55:58]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:56:02]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:57:45]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 05:57:49]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:04:29]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:04:30]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:05:32]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:05:32]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:05:54]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:05:59]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:06:23]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:06:26]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:08:16]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:08:20]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:08:38]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:08:43]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 06:08:45]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 17:22:54]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 17:22:58]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 17:30:16]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 17:30:21]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:12:27]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:12:28]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:12:52]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:12:52]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:13:13]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:13:17]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:14:03]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:14:07]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:17:17]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
+[ENV LOADED 2025-10-07 18:17:20]
+Array
+(
+    [DB_HOST] => 127.0.0.1
+    [DB_USER] => neadmin
+    [DB_NAME] => appeseament
+    [AZURE_CLIENT_ID] => 86e1138a-a612-42ec-ba71-aefef908bfae
+    [AZURE_TENANT_ID] => 493d3197-02bf-4b92-92a0-9c847aaea65c
+    [AZURE_CLIENT_SECRET] => rlj8Q~...
+    [AZURE_REDIRECT_URI] => http://localhost/endpoints/sso_callback.php
+)
+
+
