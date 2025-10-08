@@ -103,7 +103,7 @@ try {
     ];
 
     $encoded = base64_encode(json_encode($userData));
-    header("Location: http://localhost:4200/login?token={$encoded}");
+    header("Location: https://my.cxperts.us/login?token={$encoded}");
     exit;
 
 } catch (Exception $e) {
