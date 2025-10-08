@@ -4,16 +4,21 @@
   <div class="coral-separator"></div>
 
   <div class="agent-search">
-    <input type="text" class="form-control" placeholder="Search codes..." />
+    <input type="text" class="form-control" placeholder="Search codes..." (input)="onSearchChange($event)" />
+
     <select class="form-select" (change)="onBrandChange($event)">
-      <option *ngFor="let brand of userBrands" [value]="brand.id.toString()" [selected]="brand.id.toString() === selectedBrandId">
+      <option value="">All Brands</option>
+      <option *ngFor="let brand of userBrands" [value]="brand.id.toString()"
+        [selected]="brand.id.toString() === selectedBrandId">
         {{ brand.name }}
       </option>
     </select>
-    <button class="btn btn-outline-navy">
+
+    <button class="btn btn-outline-navy" (click)="applyFilters()">
       <i class="bi bi-search"></i>
     </button>
   </div>
+
 
   <div class="coral-separator"></div>
 
@@ -30,9 +35,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let code of codes" (click)="openModal(code)" [class.selected-row]="selectedCode?.idcodes === code.idcodes">
+        <tr *ngFor="let code of codes" (click)="openModal(code)"
+          [class.selected-row]="selectedCode?.idcodes === code.idcodes">
           <td>{{ code.idcodes }}</td>
-          <td>{{ code.brandName  }}</td>
+          <td>{{ code.brandName }}</td>
           <td>{{ code.description }}</td>
           <td>
             <span class="badge" [ngClass]="code.statusClass">
@@ -69,7 +75,8 @@
 
           <div class="mb-3">
             <label class="form-label fw-bold">Description/Reason</label>
-            <input type="text" class="form-control" formControlName="description" placeholder="Enter description or reason" />
+            <input type="text" class="form-control" formControlName="description"
+              placeholder="Enter description or reason" />
           </div>
 
           <div class="coral-separator"></div>

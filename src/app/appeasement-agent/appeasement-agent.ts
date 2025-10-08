@@ -14,13 +14,30 @@ declare const bootstrap: any;
   styleUrls: ['./appeasement-agent.css']
 })
 export class AppeasementAgent implements OnInit {
+  /** All codes retrieved from API */
   codes: Code[] = [];
+
+  /** Filtered codes (visible in table) */
+  filteredCodes: Code[] = [];
+
+  /** Reactive form for assignment */
   assignForm!: FormGroup;
+
+  /** Selected code for modal */
   selectedCode: Code | null = null;
+
+  /** Current user */
   currentUser: any = JSON.parse(localStorage.getItem('user') || '{}');
+
+  /** Current date (UTC-based) */
   readonly today = new Date().toISOString().split('T')[0];
+
+  /** User brands */
   userBrands: { id: number; name: string }[] = [];
+
+  /** Brand and search filter */
   selectedBrandId: string = '';
+  searchTerm: string = '';
 
   constructor(private fb: FormBuilder, private api: AppeasementService) {}
 
@@ -40,6 +57,7 @@ export class AppeasementAgent implements OnInit {
     this.loadCodes();
   }
 
+  /** Loads codes from API */
   loadCodes(): void {
     const roleId = this.currentUser?.role || 2;
     const brandId = this.selectedBrandId || '0';
@@ -47,16 +65,39 @@ export class AppeasementAgent implements OnInit {
     this.api.getCodes(brandId, roleId).subscribe({
       next: (data) => {
         this.codes = (data as any[]).map(d => Object.assign(new Code(), d));
+        this.filteredCodes = [...this.codes];
       },
-      error: (err) => console.error('Oops! something went wrong at loading the codes...', err)
+      error: (err) => console.error('❌ Error loading codes:', err)
     });
   }
 
-  onBrandChange(event: any): void {
-    this.selectedBrandId = event.target.value;
-    this.loadCodes();
+  /** Filters the codes based on search text and brand */
+  applyFilters(): void {
+    const search = this.searchTerm.toLowerCase().trim();
+
+    this.filteredCodes = this.codes.filter(c => {
+      const matchesBrand = !this.selectedBrandId || c.idBrand === +this.selectedBrandId;
+      const matchesText =
+        !search ||
+        c.description.toLowerCase().includes(search) ||
+        c.brandName?.toLowerCase().includes(search);
+      return matchesBrand && matchesText;
+    });
   }
 
+  /** Brand dropdown changed */
+  onBrandChange(event: any): void {
+    this.selectedBrandId = event.target.value;
+    this.applyFilters();
+  }
+
+  /** Search input changed */
+  onSearchChange(event: any): void {
+    this.searchTerm = event.target.value;
+    this.applyFilters();
+  }
+
+  /** Opens the assign modal */
   openModal(code: Code): void {
     this.selectedCode = code;
 
@@ -74,6 +115,7 @@ export class AppeasementAgent implements OnInit {
     }
   }
 
+  /** Saves the assignment */
   saveAssignCode(): void {
     if (this.assignForm.invalid || !this.selectedCode) return;
 
@@ -83,13 +125,13 @@ export class AppeasementAgent implements OnInit {
       idUser: this.currentUser?.idUser
     };
 
-    console.log('Payload sent to backend:', payload);
+    console.log('📦 Payload sent to backend:', payload);
 
     this.api.addAssignedCode(payload).subscribe({
       next: (res) => {
         console.log('✅ Server response:', res);
 
-        // ✅ Create alert with copy button
+        // ✅ Create alert with "Copy to clipboard" button
         const alertBox = document.createElement('div');
         alertBox.className = 'alert alert-success text-center fw-bold d-flex justify-content-between align-items-center';
         alertBox.style.position = 'fixed';
@@ -97,21 +139,20 @@ export class AppeasementAgent implements OnInit {
         alertBox.style.left = '50%';
         alertBox.style.transform = 'translateX(-50%)';
         alertBox.style.zIndex = '2000';
-        alertBox.style.width = 'fit-content';
-        alertBox.style.minWidth = '300px';
+        alertBox.style.minWidth = '350px';
         alertBox.style.padding = '10px 20px';
         alertBox.style.borderRadius = '10px';
         alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
         alertBox.innerHTML = `
-          <span>✅ Código asignado correctamente: <strong>${this.selectedCode?.code}</strong></span>
-          <button id="copyBtn" class="btn btn-sm btn-outline-light ms-3" title="Copiar código">
+          <span>Code assigned successfully: <strong>${this.selectedCode?.code}</strong></span>
+          <button id="copyBtn" class="btn btn-sm btn-outline-light ms-3" title="Copy code to clipboard">
             <i class="bi bi-clipboard"></i>
           </button>
         `;
 
         document.body.prepend(alertBox);
 
-        // ✅ Add click listener to copy the code and close alert
+        // ✅ Copy handler
         const copyBtn = alertBox.querySelector('#copyBtn') as HTMLButtonElement;
         copyBtn.addEventListener('click', async () => {
           try {
@@ -119,15 +160,15 @@ export class AppeasementAgent implements OnInit {
             copyBtn.innerHTML = '<i class="bi bi-check2"></i>';
             copyBtn.classList.remove('btn-outline-light');
             copyBtn.classList.add('btn-light', 'text-success');
-            setTimeout(() => alertBox.remove(), 1000); // remove after 1s
+            setTimeout(() => alertBox.remove(), 1000);
           } catch (err) {
-            console.error('❌ Error copying to clipboard:', err);
+            console.error('❌ Clipboard copy failed:', err);
           }
         });
       },
       error: (err) => {
-        console.error('❌ Error doing the assignation', err);
-        alert('Ooops! Something went wrong');
+        console.error('❌ Error during code assignment:', err);
+        alert('Oops! Something went wrong.');
       },
       complete: () => {
         const modalEl = document.getElementById('assignCodeModal');
