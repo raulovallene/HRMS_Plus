@@ -149,7 +149,7 @@ export class AppeasementAgent implements OnInit {
       alertBox.innerHTML = `
         <span>Code assigned successfully: <strong>${this.selectedCode?.code}</strong></span>
         <button id="copyBtn" class="btn btn-sm btn-outline-light ms-3" title="Copy code to clipboard">
-          <i class="bi bi-clipboard"></i>
+          <i class="bi bi-x-lg"></i>
         </button>
       `;
 
