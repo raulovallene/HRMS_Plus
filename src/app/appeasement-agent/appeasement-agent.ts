@@ -117,74 +117,82 @@ export class AppeasementAgent implements OnInit {
 
   /** Saves the assignment */
   saveAssignCode(): void {
-    if (this.assignForm.invalid || !this.selectedCode) return;
+  if (this.assignForm.invalid || !this.selectedCode) return;
 
-    const payload = {
-      ...this.assignForm.getRawValue(),
-      codeId: this.selectedCode.idcodes,
-      idUser: this.currentUser?.idUser
-    };
+  const payload = {
+    ...this.assignForm.getRawValue(),
+    codeId: this.selectedCode.idcodes,
+    idUser: this.currentUser?.idUser
+  };
 
-    console.log('📦 Payload sent to backend:', payload);
+  console.log('📦 Payload sent to backend:', payload);
 
-    this.api.addAssignedCode(payload).subscribe({
-      next: (res) => {
-        console.log('✅ Server response:', res);
+  this.api.addAssignedCode(payload).subscribe({
+    next: (res) => {
+      console.log('✅ Server response:', res);
 
-        // ✅ Create alert with "Copy to clipboard" button
-        const alertBox = document.createElement('div');
-        alertBox.className = 'alert alert-success text-center fw-bold d-flex justify-content-between align-items-center';
-        alertBox.style.position = 'fixed';
-        alertBox.style.top = '10px';
-        alertBox.style.left = '50%';
-        alertBox.style.transform = 'translateX(-50%)';
-        alertBox.style.zIndex = '2000';
-        alertBox.style.minWidth = '350px';
-        alertBox.style.padding = '10px 20px';
-        alertBox.style.borderRadius = '10px';
-        alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-        alertBox.innerHTML = `
-          <span>Code assigned successfully: <strong>${this.selectedCode?.code}</strong></span>
-          <button id="copyBtn" class="btn btn-sm btn-outline-light ms-3" title="Copy code to clipboard">
-            <i class="bi bi-clipboard"></i>
-          </button>
-        `;
+      // ✅ Create alert with copy button
+      const alertBox = document.createElement('div');
+      alertBox.className =
+        'alert alert-success text-center fw-bold d-flex justify-content-between align-items-center';
+      alertBox.style.position = 'fixed';
+      alertBox.style.top = '10px';
+      alertBox.style.left = '50%';
+      alertBox.style.transform = 'translateX(-50%)';
+      alertBox.style.zIndex = '2000';
+      alertBox.style.minWidth = '380px';
+      alertBox.style.padding = '10px 20px';
+      alertBox.style.borderRadius = '10px';
+      alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
 
-        document.body.prepend(alertBox);
+      // Insert code text and button
+      alertBox.innerHTML = `
+        <span>Code assigned successfully: <strong>${this.selectedCode?.code}</strong></span>
+        <button id="copyBtn" class="btn btn-sm btn-outline-light ms-3" title="Copy code to clipboard">
+          <i class="bi bi-clipboard"></i>
+        </button>
+      `;
 
-        // ✅ Copy handler
-        const copyBtn = alertBox.querySelector('#copyBtn') as HTMLButtonElement;
-        copyBtn.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(this.selectedCode?.code || '');
-            copyBtn.innerHTML = '<i class="bi bi-check2"></i>';
-            copyBtn.classList.remove('btn-outline-light');
-            copyBtn.classList.add('btn-light', 'text-success');
-            setTimeout(() => alertBox.remove(), 1000);
-          } catch (err) {
-            console.error('❌ Clipboard copy failed:', err);
-          }
-        });
-      },
-      error: (err) => {
-        console.error('❌ Error during code assignment:', err);
-        alert('Oops! Something went wrong.');
-      },
-      complete: () => {
-        const modalEl = document.getElementById('assignCodeModal');
-        if (modalEl) {
-          const modal = bootstrap.Modal.getInstance(modalEl) ?? new bootstrap.Modal(modalEl);
-          modal.hide();
+      document.body.prepend(alertBox);
+
+      // ✅ Copy handler — copies the real code, not the alert text
+      const copyBtn = alertBox.querySelector('#copyBtn') as HTMLButtonElement;
+      copyBtn.addEventListener('click', async () => {
+        const codeToCopy = this.selectedCode?.code || '';
+        try {
+          await navigator.clipboard.writeText(codeToCopy);
+          // Visual feedback
+          copyBtn.innerHTML = '<i class="bi bi-check2"></i>';
+          copyBtn.classList.remove('btn-outline-light');
+          copyBtn.classList.add('btn-light', 'text-success');
+          // Remove alert after success
+          setTimeout(() => alertBox.remove(), 1000);
+        } catch (err) {
+          console.error('❌ Clipboard copy failed:', err);
+          alert('Failed to copy code to clipboard.');
         }
-
-        this.assignForm.reset({
-          caseClient: '',
-          description: '',
-          user: this.currentUser?.username || '',
-          date: this.today
-        });
-        this.selectedCode = null;
+      });
+    },
+    error: (err) => {
+      console.error('❌ Error during code assignment:', err);
+      alert('Oops! Something went wrong.');
+    },
+    complete: () => {
+      const modalEl = document.getElementById('assignCodeModal');
+      if (modalEl) {
+        const modal =
+          bootstrap.Modal.getInstance(modalEl) ?? new bootstrap.Modal(modalEl);
+        modal.hide();
       }
-    });
-  }
+
+      this.assignForm.reset({
+        caseClient: '',
+        description: '',
+        user: this.currentUser?.username || '',
+        date: this.today
+      });
+      this.selectedCode = null;
+    }
+  });
+}
 }

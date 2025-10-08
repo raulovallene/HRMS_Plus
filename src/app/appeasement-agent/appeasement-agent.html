@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let code of codes" (click)="openModal(code)"
+        <tr *ngFor="let code of filteredCodes" (click)="openModal(code)"
           [class.selected-row]="selectedCode?.idcodes === code.idcodes">
           <td>{{ code.idcodes }}</td>
           <td>{{ code.brandName }}</td>
