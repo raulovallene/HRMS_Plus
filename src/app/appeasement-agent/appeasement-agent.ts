@@ -53,7 +53,7 @@ loadCodes(): void {
       // si tu servicio devuelve { status, data } entonces usa:
       // this.codes = (data.data as any[]).map(d => Object.assign(new Code(), d));
     },
-    error: (err) => console.error('Error al cargar los códigos:', err)
+    error: (err) => console.error('Oops! something went wrong at loading the codes...', err)
   });
 }
 
@@ -88,20 +88,20 @@ loadCodes(): void {
       idUser: this.currentUser?.idUser
     };
 
-    console.log('📦 Payload enviado al backend:', payload);
+    console.log('Payload sent to backend:', payload);
 
     this.api.addAssignedCode(payload).subscribe({
       next: (res) => {
-        console.log('✅ Respuesta del servidor:', res);
+        console.log('Answer from the server', res);
         const alertBox = document.createElement('div');
         alertBox.className = 'alert alert-success text-center fw-bold';
-        alertBox.innerText = `✅ Código asignado correctamente: ${this.selectedCode?.code}`;
+        alertBox.innerText = `Code assigned: ${this.selectedCode?.code}`;
         document.body.prepend(alertBox);
         setTimeout(() => alertBox.remove(), 5000);
       },
       error: (err) => {
-        console.error('❌ Error al guardar asignación:', err);
-        alert('Error al asignar código');
+        console.error('Error doing the assignation', err);
+        alert('Ooops! Something went wrong');
       },
       complete: () => {
         const modalEl = document.getElementById('assignCodeModal');
