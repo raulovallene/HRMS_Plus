@@ -5,7 +5,7 @@ import { Code } from '../models/code';
 
 @Injectable({ providedIn: 'root' })
 export class AppeasementService {
-  private readonly API_URL = 'https://my.cxperts.us/api/';
+  private readonly API_URL = 'https://my.cxperts.us/api/endpoints';
 
   constructor(private http: HttpClient) {}
 
@@ -43,7 +43,7 @@ export class AppeasementService {
   }
 
   login(payload: any) {
-  return this.http.post<any>('http://localhost/endpoints/login.php', payload);
+  return this.http.post<any>(`${this.API_URL}/login.php`, payload);
 }
 
 logout(): void {
