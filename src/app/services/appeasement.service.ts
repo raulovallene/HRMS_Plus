@@ -5,7 +5,7 @@ import { Code } from '../models/code';
 
 @Injectable({ providedIn: 'root' })
 export class AppeasementService {
-  private readonly API_URL = 'http://localhost/endpoints';
+  private readonly API_URL = 'https://my.cxperts.us/api/';
 
   constructor(private http: HttpClient) {}
 
