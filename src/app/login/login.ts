@@ -77,28 +77,31 @@ if (tokenParam) {
 
   /** Second step: authenticate with password */
   onPasswordSubmit(): void {
-    if (this.passwordForm.invalid) return;
+  if (this.passwordForm.invalid) return;
 
-    const payload = {
-      username: this.usernameForm.value.username,
-      password: this.passwordForm.value.password
-    };
+  const payload = {
+    username: this.usernameForm.value.username,
+    password: this.passwordForm.value.password
+  };
 
-    this.api.login(payload).subscribe({
-      next: (res) => {
-        if (res.status === 'ok') {
-          localStorage.setItem('user', JSON.stringify(res.user));
-          this.router.navigate(['/appeasement/codes']);
-        } else {
-          this.errorMessage = 'Invalid credentials.';
-        }
-      },
-      error: (err) => {
-        console.error('Password login error:', err);
-        this.errorMessage = err.error?.message || 'Login failed.';
+  this.api.login(payload).subscribe({
+    next: (res) => {
+      if (res.status === 'ok') {
+        localStorage.setItem('user', JSON.stringify(res.user));
+        this.router.navigate(['/appeasement/codes']);
+      } else if (res.status === 'error') {
+        this.errorMessage = res.message || 'Invalid credentials.';
+      } else {
+        this.errorMessage = 'Unexpected response.';
       }
-    });
-  }
+    },
+    error: (err) => {
+      console.error('Password login error:', err);
+      this.errorMessage = err.error?.message || 'Login failed.';
+    }
+  });
+}
+
 
   resetStage(): void {
     this.stage = 'username';
