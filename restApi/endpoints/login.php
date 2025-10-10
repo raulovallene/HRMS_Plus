@@ -28,16 +28,17 @@ try {
         $tenantId = getenv('AZURE_TENANT_ID');
         $clientId = getenv('AZURE_CLIENT_ID');
         $redirectUri = urlencode(getenv('AZURE_REDIRECT_URI'));
-        $scope = urlencode(getenv('AZURE_SCOPES') ?: 'openid profile email offline_access');
+        $scope = urlencode('openid profile email offline_access User.Read');
 
         $authUrl = "https://login.microsoftonline.com/{$tenantId}/oauth2/v2.0/authorize?"
-            . "client_id={$clientId}&response_type=code&redirect_uri={$redirectUri}&scope={$scope}&state={$username}";
+            . "client_id={$clientId}&response_type=code&redirect_uri={$redirectUri}"
+            . "&scope={$scope}&state=" . urlencode($username);
 
         echo json_encode(['status' => 'sso', 'redirect' => $authUrl]);
         exit;
     }
 
-    //  Local user authentication
+    // ✅ Local authentication
     if (!$password) {
         echo json_encode(['status' => 'password_required']);
         exit;
@@ -47,11 +48,11 @@ try {
         throw new Exception("Invalid password");
     }
 
-    //  Correct table name (usersBrand)
+    // Get brands
     $brandStmt = $pdo->prepare("
         SELECT b.idbrands AS id, b.name AS name
-        FROM `usersbrand` ub
-        INNER JOIN `brands` b ON ub.idBrand = b.idbrands
+        FROM usersBrand ub
+        INNER JOIN brands b ON ub.idBrand = b.idbrands
         WHERE ub.idUser = :idUser
     ");
     $brandStmt->execute([':idUser' => $user['idusers']]);

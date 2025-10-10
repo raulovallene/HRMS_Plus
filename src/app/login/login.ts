@@ -9,8 +9,7 @@ import { AppeasementService } from '../services/appeasement.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
-    styleUrls: ['./login.css']   // 👈 add this
-
+  styleUrls: ['./login.css']
 })
 export class LoginComponent implements OnInit {
   usernameForm!: FormGroup;
@@ -26,22 +25,33 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Handle Azure SSO callback
-const tokenParam = this.route.snapshot.queryParamMap.get('token');
-if (tokenParam) {
-  try {
-    const user = JSON.parse(atob(tokenParam)); // decode base64
-    localStorage.setItem('user', JSON.stringify(user));
-    console.log(user);
-    this.router.navigate(['/appeasement/codes']);
-    return;
-  } catch (e) {
-    console.error('Invalid token from SSO callback:', e);
-  }
-}
+    /** ✅ Handle Azure Entra SSO callback */
+    const tokenParam = this.route.snapshot.queryParamMap.get('token');
+    if (tokenParam) {
+      try {
+        const user = JSON.parse(atob(tokenParam)); // decode base64 payload
 
+        // Store the full user info
+        localStorage.setItem('user', JSON.stringify(user));
 
-    // Initialize forms
+        // ✅ Store the access token for Graph API photo loading
+        if (user.access_token) {
+          localStorage.setItem('access_token', user.access_token);
+        }
+
+        // Optionally, store refresh token for future silent renewal
+        if (user.refresh_token) {
+          localStorage.setItem('refresh_token', user.refresh_token);
+        }
+
+        this.router.navigate(['/appeasement/codes']);
+        return;
+      } catch (e) {
+        console.error('Invalid token from SSO callback:', e);
+      }
+    }
+
+    /** Initialize forms */
     this.usernameForm = this.fb.group({
       username: ['', Validators.required]
     });
@@ -51,7 +61,7 @@ if (tokenParam) {
     });
   }
 
-  /** First step: check username */
+  /** Step 1: Check username */
   onSubmit(): void {
     if (this.usernameForm.invalid) return;
     const username = this.usernameForm.value.username;
@@ -75,33 +85,32 @@ if (tokenParam) {
     });
   }
 
-  /** Second step: authenticate with password */
+  /** Step 2: Authenticate locally with password */
   onPasswordSubmit(): void {
-  if (this.passwordForm.invalid) return;
+    if (this.passwordForm.invalid) return;
 
-  const payload = {
-    username: this.usernameForm.value.username,
-    password: this.passwordForm.value.password
-  };
+    const payload = {
+      username: this.usernameForm.value.username,
+      password: this.passwordForm.value.password
+    };
 
-  this.api.login(payload).subscribe({
-    next: (res) => {
-      if (res.status === 'ok') {
-        localStorage.setItem('user', JSON.stringify(res.user));
-        this.router.navigate(['/appeasement/codes']);
-      } else if (res.status === 'error') {
-        this.errorMessage = res.message || 'Invalid credentials.';
-      } else {
-        this.errorMessage = 'Unexpected response.';
+    this.api.login(payload).subscribe({
+      next: (res) => {
+        if (res.status === 'ok') {
+          localStorage.setItem('user', JSON.stringify(res.user));
+          this.router.navigate(['/appeasement/codes']);
+        } else if (res.status === 'error') {
+          this.errorMessage = res.message || 'Invalid credentials.';
+        } else {
+          this.errorMessage = 'Unexpected response.';
+        }
+      },
+      error: (err) => {
+        console.error('Password login error:', err);
+        this.errorMessage = err.error?.message || 'Login failed.';
       }
-    },
-    error: (err) => {
-      console.error('Password login error:', err);
-      this.errorMessage = err.error?.message || 'Login failed.';
-    }
-  });
-}
-
+    });
+  }
 
   resetStage(): void {
     this.stage = 'username';

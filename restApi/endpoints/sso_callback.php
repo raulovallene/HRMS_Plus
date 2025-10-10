@@ -22,7 +22,7 @@ try {
 
     $postData = [
         'client_id'     => $clientId,
-        'scope'         => 'openid profile email offline_access',
+        'scope'         => 'openid profile email offline_access User.Read',
         'code'          => $code,
         'redirect_uri'  => $redirectUri,
         'grant_type'    => 'authorization_code',
@@ -50,7 +50,7 @@ try {
         throw new Exception("Token exchange failed: " . ($tokenData['error_description'] ?? 'null'));
     }
 
-    // Decode JWT
+    // Decode JWT payload
     $idToken = $tokenData['id_token'];
     $parts = explode('.', $idToken);
     $payload = json_decode(base64_decode(strtr($parts[1], '-_', '+/')), true);
@@ -67,11 +67,25 @@ try {
         throw new Exception("Missing email in ID token.");
     }
 
+    // --- OPTIONAL: Fetch full Microsoft Graph profile ---
+    $graphData = null;
+    if (!empty($tokenData['access_token'])) {
+        $headers = [
+            'Authorization: Bearer ' . $tokenData['access_token']
+        ];
+        $ch = curl_init("https://graph.microsoft.com/v1.0/me");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $graphResponse = curl_exec($ch);
+        curl_close($ch);
+        $graphData = json_decode($graphResponse, true);
+    }
+
     // DB connection
     $db = new Database();
     $pdo = $db->connect();
 
-    // Ensure user exists
+    // Ensure user exists in DB
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :email LIMIT 1");
     $stmt->execute([':email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -91,19 +105,24 @@ try {
         $brands = $brandStmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Build user data
+    // --- Build user data ---
     $userData = [
-        'idUser'   => $user['idusers'],
-        'username' => $user['username'],
-        'role'     => $user['idRole'],
-        'sso'      => $user['sso'],
-        'email'    => $email,
-        'name'     => $name,
-        'brands'   => $brands
+        'idUser'        => $user['idusers'],
+        'username'      => $user['username'],
+        'role'          => $user['idRole'],
+        'sso'           => $user['sso'],
+        'email'         => $email,
+        'name'          => $name,
+        'brands'        => $brands,
+        'access_token'  => $tokenData['access_token'] ?? null,
+        'refresh_token' => $tokenData['refresh_token'] ?? null,
+        'graph'         => $graphData
     ];
 
+    // --- Redirect to Angular ---
     $encoded = base64_encode(json_encode($userData));
     header("Location: https://my.cxperts.us/login?token={$encoded}");
+    #header("Location: http://localhost:4200/login?token={$encoded}");
     exit;
 
 } catch (Exception $e) {

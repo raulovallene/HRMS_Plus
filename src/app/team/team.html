@@ -20,6 +20,7 @@
         <table class="table table-hover">
           <thead class="table-dark">
             <tr>
+              <th>Select</th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Employee ID</th>
@@ -29,29 +30,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr (click)="openAllocationModal()">
-              <td>Jane Smith</td>
-              <td>jane@example.com</td>
-              <td>EMP1002</td>
-              <td>Finance</td>
-              <td>Accountant</td>
-              <td><span class="badge bg-success">Completed</span></td>
-            </tr>
-            <tr (click)="openAllocationModal()">
-              <td>Charlie Branth</td>
-              <td>cbranth@example.com</td>
-              <td>EMP1003</td>
-              <td>Production</td>
-              <td>Customer Care Agent</td>
-              <td><span class="badge bg-warning">Pending</span></td>
-            </tr>
-            <tr (click)="openAllocationModal()">
-              <td>Robert Brown</td>
-              <td>robert@example.com</td>
-              <td>EMP1004</td>
-              <td>Engineering</td>
-              <td>Developer</td>
-              <td><span class="badge bg-danger">Overdue</span></td>
+            <tr *ngFor="let member of currentTeam" (click)="openAllocationModal(member)"
+              [ngClass]="{'selected-row': selectedCurrent.includes(member)}">
+              <td (click)="$event.stopPropagation()">
+                <input type="checkbox" [checked]="selectedCurrent.includes(member)"
+                  (change)="toggleCurrentSelection(member)">
+              </td>
+              <td>{{ member.name }}</td>
+              <td>{{ member.email }}</td>
+              <td>{{ member.id }}</td>
+              <td>{{ member.department }}</td>
+              <td>{{ member.title }}</td>
+              <td>
+                <span *ngIf="member.status === 'Completed'" class="badge bg-success">Completed</span>
+                <span *ngIf="member.status === 'Pending'" class="badge bg-warning">Pending</span>
+                <span *ngIf="member.status === 'Overdue'" class="badge bg-danger">Overdue</span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -59,11 +53,8 @@
 
       <!-- Floating circle controls -->
       <div class="fab-container">
-        <button class="btn fab-btn btn-outline-primary" disabled>
-          <i class="bi bi-plus-lg"></i>
-        </button>
-        <button class="btn fab-btn btn-outline-secondary" disabled>
-          <i class="bi bi-save"></i>
+        <button class="btn fab-btn btn-outline-secondary" [disabled]="selectedCurrent.length === 0">
+          <i class="bi bi-x-lg"></i>
         </button>
       </div>
     </div>
@@ -87,9 +78,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let employee of pendingEmployees"
-                (click)="togglePendingSelection(employee)"
-                [ngClass]="{'selected-row': selectedPending.includes(employee)}">
+            <tr *ngFor="let employee of pendingEmployees" (click)="togglePendingSelection(employee)"
+              [ngClass]="{'selected-row': selectedPending.includes(employee)}">
               <td>{{ employee.name }}</td>
               <td>{{ employee.email }}</td>
               <td>{{ employee.id }}</td>
@@ -103,15 +93,27 @@
 
       <!-- Floating approve button -->
       <div class="fab-container">
-        <button class="btn fab-btn btn-outline-success" [disabled]="selectedPending.length === 0">
-          <i class="bi bi-check-lg"></i>
-        </button>
+        <!-- Tooltip only when disabled -->
+        <div *ngIf="selectedPending.length === 0" class="tooltip-wrapper" data-bs-toggle="tooltip"
+          data-bs-placement="left" title="You must select a record first">
+          <button class="btn fab-btn btn-outline-success" disabled>
+            <i class="bi bi-check-lg"></i>
+          </button>
+        </div>
+
+        <!-- Active button when one or more selected -->
+        <div *ngIf="selectedPending.length > 0">
+          <button class="btn fab-btn btn-outline-success" (click)="approveSelected()">
+            <i class="bi bi-check-lg"></i>
+          </button>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
 
+<!-- Allocation Modal -->
 <!-- Allocation Modal -->
 <div class="modal fade" id="allocationModal" tabindex="-1" aria-labelledby="allocationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -121,20 +123,21 @@
         <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"></button>
       </div>
 
-      <div class="modal-body row">
+      <div class="modal-body row overflow-hidden">
         <!-- Clients Table (Left) -->
         <div class="col-md-4 d-flex flex-column">
           <h6 class="text-center"><b>Clients</b></h6>
           <div class="blue-separator"></div>
-          <div class="table-container">
-            <table class="table table-hover text-center">
+          <div class="table-container allocation-scroll">
+            <table class="table table-hover text-center mb-0">
               <thead class="table-dark">
-                <tr><th>Client</th></tr>
+                <tr>
+                  <th>Client</th>
+                </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let client of clients"
-                    (click)="selectClient(client)"
-                    [ngClass]="{'selected-client': selectedClient === client}">
+                <tr *ngFor="let client of clients" (click)="selectClient(client)"
+                  [ngClass]="{'selected-client': selectedClient === client}">
                   <td>{{ client }}</td>
                 </tr>
               </tbody>
@@ -162,15 +165,17 @@
         <div class="col-md-4 d-flex flex-column">
           <h6 class="text-center"><b>Allocations</b></h6>
           <div class="blue-separator"></div>
-          <div class="table-container">
-            <table class="table text-center">
+          <div class="table-container allocation-scroll">
+            <table class="table text-center mb-0">
               <thead class="table-dark">
-                <tr><th>Client</th><th>%</th></tr>
+                <tr>
+                  <th>Client</th>
+                  <th>%</th>
+                </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let allocation of allocations"
-                    (click)="selectAllocation(allocation)"
-                    [ngClass]="{'selected-client': selectedAllocation === allocation}">
+                <tr *ngFor="let allocation of allocations" (click)="selectAllocation(allocation)"
+                  [ngClass]="{'selected-client': selectedAllocation === allocation}">
                   <td>{{ allocation.client }}</td>
                   <td>{{ allocation.percent }}%</td>
                 </tr>
@@ -181,11 +186,9 @@
           <!-- Total Allocated -->
           <div class="mt-3 text-center">
             <label class="fw-bold me-2">Total Allocated:</label>
-            <input type="text"
-                   class="form-control d-inline-block w-auto text-center"
-                   [ngClass]="{'bg-warning text-dark': totalAllocated < 100, 'bg-success text-white': totalAllocated === 100}"
-                   [value]="totalAllocated + '%'"
-                   disabled>
+            <input type="text" class="form-control d-inline-block w-auto text-center"
+              [ngClass]="{'bg-warning text-dark': totalAllocated < 100, 'bg-success text-white': totalAllocated === 100}"
+              [value]="totalAllocated + '%'" disabled>
           </div>
         </div>
       </div>
@@ -197,6 +200,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Allocation Input Modal -->
 <div class="modal fade" id="allocationInputModal" tabindex="-1" aria-hidden="true">
@@ -213,7 +217,8 @@
       </div>
       <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-outline-coral me-2" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-outline-navy" (click)="saveAllocation()" data-bs-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-outline-navy" (click)="saveAllocation()"
+          data-bs-dismiss="modal">Save</button>
       </div>
     </div>
   </div>

@@ -125,11 +125,8 @@ export class AppeasementAgent implements OnInit {
     idUser: this.currentUser?.idUser
   };
 
-  console.log('📦 Payload sent to backend:', payload);
-
   this.api.addAssignedCode(payload).subscribe({
     next: (res) => {
-      console.log('✅ Server response:', res);
 
       // ✅ Create alert with copy button
       const alertBox = document.createElement('div');

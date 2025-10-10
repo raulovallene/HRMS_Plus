@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Code } from '../models/code';
 
 @Injectable({ providedIn: 'root' })
 export class AppeasementService {
   private readonly API_URL = 'https://my.cxperts.us/api/endpoints';
+  //private readonly API_URL = 'http://localhost/endpoints';
+  private readonly GRAPH_URL = 'https://graph.microsoft.com/v1.0/me/photo/$value';
 
   constructor(private http: HttpClient) {}
 
@@ -26,30 +28,44 @@ export class AppeasementService {
    *  🔹 Authentication Methods
    *  =============================== */
 
-  /**
-   * Step 1: Check username to determine if SSO or password login
-   */
   checkUser(username: string): Observable<any> {
     const payload = { username };
     return this.http.post<any>(`${this.API_URL}/login.php`, payload);
   }
 
-  /**
-   * Step 2: Perform username + password authentication
-   */
   loginUser(username: string, password: string): Observable<any> {
     const payload = { username, password };
     return this.http.post<any>(`${this.API_URL}/login.php`, payload);
   }
 
   login(payload: any) {
-  return this.http.post<any>(`${this.API_URL}/login.php`, payload);
-}
+    return this.http.post<any>(`${this.API_URL}/login.php`, payload);
+  }
 
-logout(): void {
-  localStorage.removeItem('user');
-  window.location.href = '/login';
-}
+  logout(): void {
+    localStorage.removeItem('user');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('profile_photo_url');
+    window.location.href = '/login';
+  }
 
+  /** ===============================
+   *  🔹 Microsoft Graph Profile Photo
+   *  =============================== */
+  getMicrosoftProfilePhoto(): Observable<string | null> {
+    const token = localStorage.getItem('access_token');
+    if (!token) return of(null);
 
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'image/jpeg'
+    });
+
+    return this.http
+      .get(this.GRAPH_URL, { headers, responseType: 'blob' })
+      .pipe(
+        map((blob) => URL.createObjectURL(blob)),
+        catchError(() => of(null))
+      );
+  }
 }

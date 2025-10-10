@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,35 +9,35 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './team.html',
   styleUrls: ['./team.css']
 })
-export class Team {
-  // ===================
-  // Sample data
-  // ===================
-  clients: string[] = ['Client A', 'Client B', 'Client C', 'Client D'];
-
+export class Team implements AfterViewInit {
+  clients: string[] = ['ColeHaan', 'RAG and BONE', 'SEA', 'Arbonne', 'Moder', 'SEAU', 'Hugo BOSS', 'Marc Jacobs', 'Haggar', 'THD', 'Aucera'];
   allocations: { client: string, percent: number }[] = [];
 
-  // Employees pending approval
+  // Current Team Data
+  currentTeam = [
+    { name: 'Jane Smith', email: 'jane@example.com', id: 'EMP1002', department: 'Finance', title: 'Accountant', status: 'Completed' },
+    { name: 'Charlie Branth', email: 'cbranth@example.com', id: 'EMP1003', department: 'Production', title: 'Customer Care Agent', status: 'Pending' },
+    { name: 'Robert Brown', email: 'robert@example.com', id: 'EMP1004', department: 'Engineering', title: 'Developer', status: 'Overdue' }
+  ];
+
+  // Pending Approvals
   pendingEmployees = [
     { name: 'Susan Lee', email: 'slee@example.com', id: 'EMP2001', department: 'Marketing', title: 'Coordinator' },
     { name: 'David Johnson', email: 'djohnson@example.com', id: 'EMP2002', department: 'Sales', title: 'Sales Rep' },
     { name: 'Luis Martínez', email: 'lmartinez@example.com', id: 'EMP2003', department: 'IT', title: 'Support Tech' }
   ];
 
-  // ===================
-  // Selection state
-  // ===================
   selectedClient: string | null = null;
   selectedAllocation: { client: string, percent: number } | null = null;
   allocationPercent: number = 0;
 
-  // Multi-selection for Pending Approvals
   selectedPending: any[] = [];
+  selectedCurrent: any[] = [];
 
-  // ===================
+  // ======================
   // Modal Controls
-  // ===================
-  openAllocationModal() {
+  // ======================
+  openAllocationModal(member?: any) {
     const modal = new (window as any).bootstrap.Modal(
       document.getElementById('allocationModal')
     );
@@ -52,9 +52,27 @@ export class Team {
     modal.show();
   }
 
-  // ===================
+  // ======================
   // Table Selections
-  // ===================
+  // ======================
+  toggleCurrentSelection(member: any) {
+    const idx = this.selectedCurrent.indexOf(member);
+    if (idx >= 0) {
+      this.selectedCurrent.splice(idx, 1);
+    } else {
+      this.selectedCurrent.push(member);
+    }
+  }
+
+  togglePendingSelection(employee: any) {
+    const idx = this.selectedPending.indexOf(employee);
+    if (idx >= 0) {
+      this.selectedPending.splice(idx, 1);
+    } else {
+      this.selectedPending.push(employee);
+    }
+  }
+
   selectClient(client: string) {
     this.selectedClient = client;
     this.selectedAllocation = null;
@@ -65,34 +83,14 @@ export class Team {
     this.selectedClient = null;
   }
 
-  // Toggle multiple selections in Pending Approvals
-  togglePendingSelection(employee: any) {
-    const idx = this.selectedPending.indexOf(employee);
-    if (idx >= 0) {
-      this.selectedPending.splice(idx, 1); // remove if already selected
-    } else {
-      this.selectedPending.push(employee); // add if not selected
-    }
-  }
-
-  // ===================
-  // Actions
-  // ===================
   saveAllocation() {
     if (this.selectedClient && this.allocationPercent > 0) {
-      const existingIndex = this.allocations.findIndex(
-        (a) => a.client === this.selectedClient
-      );
-
+      const existingIndex = this.allocations.findIndex(a => a.client === this.selectedClient);
       if (existingIndex >= 0) {
         this.allocations[existingIndex].percent = this.allocationPercent;
       } else {
-        this.allocations.push({
-          client: this.selectedClient,
-          percent: this.allocationPercent,
-        });
+        this.allocations.push({ client: this.selectedClient, percent: this.allocationPercent });
       }
-
       this.allocationPercent = 0;
       this.selectedClient = null;
     }
@@ -100,28 +98,27 @@ export class Team {
 
   removeAllocation() {
     if (this.selectedAllocation) {
-      this.allocations = this.allocations.filter(
-        (a) => a !== this.selectedAllocation
-      );
+      this.allocations = this.allocations.filter(a => a !== this.selectedAllocation);
       this.selectedAllocation = null;
     }
   }
 
-  // Approve multiple pending employees
   approveSelected() {
     if (this.selectedPending.length > 0) {
-      // por ahora solo los mostramos en consola
-      console.log('Approved employees:', this.selectedPending);
-
-      // luego puedes moverlos a Current Team
       this.selectedPending = [];
     }
   }
 
-  // ===================
-  // Computed
-  // ===================
   get totalAllocated(): number {
     return this.allocations.reduce((sum, a) => sum + a.percent, 0);
+  }
+
+  ngAfterViewInit(): void {
+    if ((window as any).bootstrap) {
+      const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach((tooltipTriggerEl) => {
+        new (window as any).bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    }
   }
 }

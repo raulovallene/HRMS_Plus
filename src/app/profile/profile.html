@@ -1,61 +1,233 @@
-<div class="profile-page-wrapper">
-  <div class="main-profile">
-
+<div class="section">
+  <h3 class="agent-title">Profile</h3>
+  <div class="agent-underline"></div>
+  <div class="profile-surface">
     <!-- Profile Photo -->
-    <div class="d-flex justify-content-center mb-4">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-           alt="User Profile Photo"
-           class="rounded-circle profile-photo">
+    <div class="d-flex justify-content-center mb-3">
+      <img [src]="profilePhotoUrl" alt="User Photo" class="rounded-circle profile-photo" />
     </div>
 
-    <!-- First Separator -->
-    <div class="coral-separator"></div>
+    <div class="blue-separator"></div>
 
     <!-- Action Buttons -->
-    <div class="d-flex justify-content-between my-3 flex-wrap gap-3">
-      <button class="btn btn-outline-primary">
+    <div class="d-flex justify-content-end my-3 flex-wrap gap-3">
+      <button class="btn btn-outline-navy">
         <i class="bi bi-pencil-fill me-1"></i>Edit
       </button>
-      <button class="btn btn-outline-secondary">
-        <i class="bi bi-upload me-1"></i>Upload Photo
-      </button>
-      <button class="btn btn-outline-success">
+      <button class="btn btn-outline-coral" hidden>
         <i class="bi bi-save me-1"></i>Save
       </button>
     </div>
 
-    <!-- Second Separator -->
-    <div class="coral-separator"></div>
+    <div class="blue-separator"></div>
 
-    <!-- Profile Form Fields -->
-    <div class="row mt-4">
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-control" placeholder="John Doe" disabled>
+    <!-- Tabs -->
+    <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#personal" type="button">
+          <i class="bi bi-person-fill me-1"></i> Personal
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#corporative" type="button">
+          <i class="bi bi-folder-fill me-1"></i> Corporative
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#management" type="button">
+          <i class="bi bi-building me-1"></i> Management
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hr" type="button">
+          <i class="bi bi-people-fill me-1"></i> HR
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#accounting" type="button">
+          <i class="bi bi-cash-stack me-1"></i> Accounting
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tabs Content -->
+    <div class="profile-content tab-content">
+      <!-- PERSONAL -->
+      <div class="tab-pane fade show active" id="personal" role="tabpanel">
+        <div class="row g-3 col-md-12">
+          <div class="col-md-12">
+            <div class="row g-3 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">Internal Position</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Country</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Middle Name</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-6">
+                <label class="form-label">Gender</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Birth Date</label>
+                <input type="date" class="form-control" disabled />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-control" placeholder="john@example.com" disabled>
+
+      <!-- CORPORATIVE -->
+      <div class="tab-pane fade" id="corporative" role="tabpanel">
+        <div class="row g-3 col-md-12">
+          <div class="col-md-12">
+            <div class="row g-3 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">Employee ID</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Employment Status</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Global Position</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">Department</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">GEO</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Employment Type</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">Hired Date</label>
+                <input type="date" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">On Site / WAH</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">LOB</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-6">
+                <label class="form-label">Site Location 1</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Site Location 2</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1 col-md-12">
+              <div class="col-md-6">
+                <label class="form-label">Email Addresses</label>
+                <ul class="list-group">
+                  <li class="list-group-item">john@example.com</li>
+                  <li class="list-group-item">john.doe@company.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Employee ID</label>
-        <input type="text" class="form-control" placeholder="EMP12345" disabled>
+
+      <!-- MANAGEMENT -->
+      <div class="tab-pane fade" id="management" role="tabpanel">
+        <div class="row g-3 col-md-12">
+          <div class="col-md-12">
+            <div class="row g-3 col-md-12">
+              <div class="col-md-6">
+                <label class="form-label">Supervisor</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Supervisor Email(s)</label>
+                <ul class="list-group">
+                  <li class="list-group-item">supervisor@company.com</li>
+                  <li class="list-group-item">lead@company.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Department</label>
-        <input type="text" class="form-control" placeholder="div" disabled>
+
+      <!-- HR -->
+      <div class="tab-pane fade" id="hr" role="tabpanel">
+        <div class="row g-3 col-md-12">
+          <div class="col-md-12">
+            <div class="row g-3 col-md-12">
+              <div class="col-md-4">
+                <label class="form-label">Attrition Type</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Attrition Reason</label>
+                <input type="text" class="form-control" disabled />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Attrition Date</label>
+                <input type="date" class="form-control" disabled />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Job Title</label>
-        <input type="text" class="form-control" placeholder="div Manager" disabled>
-      </div>
-      <div class="col-md-6 mb-3">
-        <label class="fomr-label">Supervisor's Name</label>
-        <input type="text" class="form-control" placeholder="Manager" disabled>
-      </div>
-      <div class="col-md-6 mb-3">
-        <label class="fomr-label">Supervisor's Email</label>
-        <input type="text" class="form-control" placeholder="Email" disabled>
+
+      <!-- ACCOUNTING -->
+      <div class="tab-pane fade" id="accounting" role="tabpanel">
+        <div class="row g-3 col-md-12">
+          <div class="col-md-12">
+            <div class="row g-3 col-md-12">
+              <div class="col-md-12">
+                <label class="form-label">Clients and Allocations</label>
+                <textarea class="form-control" rows="4" disabled></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
