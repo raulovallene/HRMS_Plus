@@ -51,7 +51,7 @@ try {
     // Get brands
     $brandStmt = $pdo->prepare("
         SELECT b.idbrands AS id, b.name AS name
-        FROM usersBrand ub
+        FROM usersbrand ub
         INNER JOIN brands b ON ub.idBrand = b.idbrands
         WHERE ub.idUser = :idUser
     ");
