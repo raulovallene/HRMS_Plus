@@ -1,41 +1,23 @@
 <?php
-/**
- * buildings.php (simplified)
- * 
- * Simple JSON endpoint for Kimco buildings data.
- * No auth, no headers, no logger — just raw DB read.
- */
-
 require_once __DIR__ . '/../db_kimco.php';
 
-header('Content-Type: application/json; charset=utf-8');
-
 try {
-    // connect
+    // Crear conexión usando la clase ya probada
     $db = new DatabaseKimco(__DIR__ . '/../config/.env');
     $pdo = $db->connect();
 
-    // params
-    $limit = isset($_GET['limit']) ? min((int)$_GET['limit'], 5000) : 100;
+    // Ejecutar query simple
+    $sql = "SELECT * FROM buildings LIMIT 5";
+    $stmt = $pdo->query($sql);
 
-    // query
-    $sql = "SELECT id, building_name, city, state, zip_code FROM buildings ORDER BY id ASC LIMIT :limit";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-    $stmt->execute();
-
+    // Obtener resultados
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode([
-        'ok' => true,
-        'count' => count($rows),
-        'data' => $rows
-    ], JSON_UNESCAPED_UNICODE);
+    // Mostrar en pantalla sin formatear (debug)
+    echo "<pre>";
+    print_r($rows);
+    echo "</pre>";
 
 } catch (Throwable $e) {
-    http_response_code(500);
-    echo json_encode([
-        'ok' => false,
-        'error' => $e->getMessage()
-    ]);
+    echo "<pre>ERROR:\n" . $e->getMessage() . "</pre>";
 }
