@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../config/api_header.php';
+
 /**
  * db_kimco.php
  * 

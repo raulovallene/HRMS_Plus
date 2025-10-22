@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../db_kimco.php';
+require_once __DIR__ . '/../config/api_header.php';
+
 
 try {
     // Crear conexión usando la clase ya probada
