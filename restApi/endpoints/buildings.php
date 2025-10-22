@@ -12,7 +12,7 @@ try {
     $pdo = $db->connect();
 
     // Ejecutar query simple
-    $sql = "SELECT * FROM buildings LIMIT 5";
+    $sql = "SELECT * FROM buildings";
     $stmt = $pdo->query($sql);
 
     // Obtener resultados
