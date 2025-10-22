@@ -8,6 +8,20 @@
 
 require_once __DIR__ . '/db_kimco.php';
 
+// 🔹 Cargar variables del .env si no existen aún
+if (!getenv('API_KIMCO_BEARER_TOKEN')) {
+    try {
+        $dbLoader = new DatabaseKimco(__DIR__ . '/.env'); // esto carga el .env sin abrir conexión
+    } catch (Throwable $e) {
+        http_response_code(500);
+        echo json_encode([
+            'ok' => false,
+            'error' => 'Failed to load .env file: ' . $e->getMessage()
+        ]);
+        exit;
+    }
+}
+
 function requireAuth()
 {
     $headers = getallheaders();
