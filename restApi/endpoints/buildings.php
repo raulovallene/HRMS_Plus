@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../db_kimco.php';
+require_once __DIR__ . '/../config/db_kimco.php';
 require_once __DIR__ . '/../config/api_header.php';
 
 
