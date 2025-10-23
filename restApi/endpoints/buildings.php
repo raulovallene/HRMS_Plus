@@ -12,7 +12,7 @@ try {
     $db = new DatabaseKimco(__DIR__ . '/../config/.env');
     $pdo = $db->connect();
 
-    $sql = "SELECT * FROM buildings LIMIT 5";
+    $sql = "SELECT * FROM buildings";
     $stmt = $pdo->query($sql);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
