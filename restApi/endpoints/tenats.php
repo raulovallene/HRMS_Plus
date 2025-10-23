@@ -11,7 +11,7 @@ try {
     $db = new DatabaseKimco(__DIR__ . '/../config/.env');
     $pdo = $db->connect();
 
-    $sql = "SELECT * FROM tenants ORDER BY id ASC LIMIT 1000";
+    $sql = "SELECT * FROM tenants ORDER BY id ASC";
     $stmt = $pdo->query($sql);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
