@@ -11,11 +11,11 @@ try {
     $db = new DatabaseKimco(__DIR__ . '/../config/.env');
     $pdo = $db->connect();
 
-    $sql = "SELECT * FROM vendors ORDER BY id ASC LIMIT 1000";
+    $sql = "SELECT * FROM tenants ORDER BY id ASC LIMIT 1000";
     $stmt = $pdo->query($sql);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    logAction('vendors', 'Returned ' . count($rows) . ' vendors', 'INFO');
+    logAction('tenants', 'Returned ' . count($rows) . ' tenants', 'INFO');
 
     echo json_encode([
         'ok' => true,
@@ -24,7 +24,7 @@ try {
     ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 } catch (Throwable $e) {
-    logAction('vendors', 'Error: ' . $e->getMessage(), 'ERROR');
+    logAction('tenants', 'Error: ' . $e->getMessage(), 'ERROR');
     http_response_code(500);
     echo json_encode([
         'ok' => false,
