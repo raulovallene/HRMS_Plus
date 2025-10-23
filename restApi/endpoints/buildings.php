@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../config/api_header.php';
 require_once __DIR__ . '/../config/db_kimco.php';
 require_once __DIR__ . '/../config/auth.php';
+require_once __DIR__ . '/../config/logger.php';
+
 
 // === AUTENTICACIÓN ===
 requireAuth();
@@ -33,3 +35,4 @@ try {
         'error' => $e->getMessage()
     ]);
 }
+?>
