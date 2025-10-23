@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/logger.php';
+
 /**
  * auth.php
  * 
@@ -17,6 +19,7 @@ if (!getenv('API_KIMCO_BEARER_TOKEN')) {
         echo json_encode([
             'ok' => false,
             'error' => 'Failed to load .env file: ' . $e->getMessage()
+            logAction('auth', 'Failed to load .env file', 'ERROR');
         ]);
         exit;
     }
@@ -33,6 +36,7 @@ function requireAuth()
         echo json_encode([
             'ok' => false,
             'error' => 'Unauthorized: missing Authorization header'
+            logAction('auth', 'Missing Authorization header', 'ALERT');
         ]);
         exit;
     }
@@ -43,6 +47,7 @@ function requireAuth()
         echo json_encode([
             'ok' => false,
             'error' => 'Unauthorized: invalid header format'
+            logAction('auth', 'Invalid token provided', 'ERROR');
         ]);
         exit;
     }
@@ -56,6 +61,7 @@ function requireAuth()
         echo json_encode([
             'ok' => false,
             'error' => 'Server misconfiguration: missing API_KIMCO_BEARER_TOKEN'
+            logAction('auth', 'Invalid token provided', 'ERROR');
         ]);
         exit;
     }
@@ -66,10 +72,12 @@ function requireAuth()
         echo json_encode([
             'ok' => false,
             'error' => 'Unauthorized: invalid token'
+            logAction('auth', 'Invalid token provided', 'ERROR');
         ]);
         exit;
     }
 
     // ✅ Si pasa todas las validaciones
+    logAction('auth', 'Auth successful', 'INFO');
     return true;
 }

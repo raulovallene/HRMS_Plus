@@ -64,7 +64,8 @@ if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
         $pdo = $db->connect();
         echo json_encode(['ok' => true, 'message' => '✅ Connection success to kimco_sf database']);
     } catch (Throwable $e) {
-        http_response_code(500);
-        echo json_encode(['ok' => false, 'error' => $e->getMessage()]);
+        require_once __DIR__ . '/logger.php';
+        logAction('db_kimco', 'Database connection failed: ' . $e->getMessage(), 'ERROR');
+        throw new Exception('Database connection failed: ' . $e->getMessage());
     }
 }
