@@ -19,10 +19,16 @@ try {
     if ($roleId == 1) {
         // Admin: todos los códigos con nombre de marca
         $query = "
-            SELECT c.*, b.name AS brandName
-            FROM codes c
-            INNER JOIN brands b ON c.idBrand = b.idBrands
-            ORDER BY c.idcodes ASC
+           SELECT c.idcodes, c.idBrand, c.description, c.code, c.createdAt, c.validUntil, brands.name AS `brandName`, c.status
+FROM codes c
+INNER JOIN (
+    SELECT description, MIN(idcodes) AS firstId
+    FROM codes
+    WHERE status = 1
+    GROUP BY description
+) AS firstPerGroup
+ON c.idcodes = firstPerGroup.firstId
+INNER JOIN brands ON brands.idbrands = c.idBrand;
         ";
         $stmt = $pdo->prepare($query);
     } else {
@@ -32,12 +38,17 @@ try {
 
         $placeholders = implode(',', array_map(fn($i) => ":b$i", array_keys($brandIds)));
         $query = "
-            SELECT c.*, b.name AS brandName
-            FROM codes c
-            INNER JOIN brands b ON c.idBrand = b.idBrands
-            WHERE c.idBrand IN ($placeholders)
-              AND c.status = 1
-            ORDER BY c.idcodes ASC
+SELECT c.idcodes, c.idBrand, c.description, c.code, c.createdAt, c.validUntil, brands.name AS `brandName`, c.status
+FROM codes c
+INNER JOIN (
+    SELECT description, MIN(idcodes) AS firstId
+    FROM codes
+    WHERE status = 1
+    GROUP BY description
+) AS firstPerGroup
+ON c.idcodes = firstPerGroup.firstId
+INNER JOIN brands ON brands.idbrands = c.idBrand
+WHERE c.idBrand IN ($placeholders)
         ";
         $stmt = $pdo->prepare($query);
 

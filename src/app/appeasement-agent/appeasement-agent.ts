@@ -189,6 +189,8 @@ export class AppeasementAgent implements OnInit {
         date: this.today
       });
       this.selectedCode = null;
+
+      this.loadCodes();
     }
   });
 }

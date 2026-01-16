@@ -26,19 +26,32 @@ try {
         }
     }
 
-    // Preparar el INSERT con los nombres REALES de las columnas
+    // ✅ Comenzamos transacción
+    $pdo->beginTransaction();
+
+    // 1️⃣ Insertar en assignedcodes (igual que tu código actual)
     $stmt = $pdo->prepare("
         INSERT INTO assignedcodes (idCode, idUser, `case`, description, `date`)
         VALUES (:idCode, :idUser, :case, :description, :date)
     ");
-
     $stmt->execute([
-        ':idCode' => $input['codeId'],
-        ':idUser' => $input['idUser'],
-        ':case' => $input['caseClient'],
-        ':description' => $input['description'],
-        ':date' => $input['date']
+        ':idCode'     => $input['codeId'],
+        ':idUser'     => $input['idUser'],
+        ':case'       => $input['caseClient'],
+        ':description'=> $input['description'],
+        ':date'       => $input['date']
     ]);
+
+    // 2️⃣ Marcar el código como usado
+    $stmt = $pdo->prepare("
+        UPDATE codes
+        SET status = 0
+        WHERE idcodes = :idCode
+    ");
+    $stmt->execute([':idCode' => $input['codeId']]);
+
+    // ✅ Commit de transacción
+    $pdo->commit();
 
     echo json_encode([
         'status' => 'ok',
@@ -47,6 +60,9 @@ try {
     ], JSON_PRETTY_PRINT);
 
 } catch (Exception $e) {
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
     http_response_code(500);
     echo json_encode([
         'status' => 'error',
